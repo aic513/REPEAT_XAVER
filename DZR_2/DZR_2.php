@@ -28,18 +28,6 @@ echo "Недавно я прочитал книгу " .$book['title']. ", нап
 
 echo '<p>';
 echo 'Task_4 <p>';
-//$book1= array();
-//$book1['title1'] = "'Война и мир'";
-//$book1['author1'] = "Толстой";
-//$book1['pages1'] = "5842552";
-//
-//$book2 = array(
-//    "title2" => "'Собчаье сердце'",
-//    "author2" => "Грибоедов",
-//    "pages2" => "4751",
-//);
-//
-//$books = array($book1,$book2);
 $books = array(
     $book1 = array(
         'title1' => "'Война и мир'",

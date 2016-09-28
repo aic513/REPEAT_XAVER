@@ -27,17 +27,17 @@ $max = max(
 
 echo 'Max_month is ' . $max . "<br>";
 
-sort($date); //сортируем массив по возрастанию
+sort($date); 
 echo "<pre>";
 var_dump($date);
 echo "</pre> <br>";
 
-$selected = array_pop($date);  //извлекаем последний элемент массива
-echo 'Last massive element is ' . date("d.m.y. H:i:s", $selected) . "<br>";  //выводим последний элемент массива в формате date
+$selected = array_pop($date);  
+echo 'Last massive element is ' . date("d.m.y. H:i:s", $selected) . "<br>";  
 
-echo 'My timezone now is ' . date_default_timezone_get() . "<br>";  //выводим наш часовой пояс
-date_default_timezone_set('America/New_York');  //меняем на пояс для Нью-Йорка
-echo 'My timezone after change is ' . date_default_timezone_get() . "<br>"; //Выводим часовой пояс после изменений
+echo 'My timezone now is ' . date_default_timezone_get() . "<br>";  
+date_default_timezone_set('America/New_York');  
+echo 'My timezone after change is ' . date_default_timezone_get() . "<br>"; 
 
 
 

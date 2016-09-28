@@ -78,10 +78,6 @@ function parse_func($product, $param){
     </tr>
 <?php
 foreach ($bd as $key => $value) {
-//    echo $key;
-//    echo '<br>';
-//    print_r($value);
-//    echo '<p>';
     parse_func($key,$value);
 }
 ?>
