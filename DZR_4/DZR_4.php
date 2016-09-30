@@ -4,48 +4,50 @@ require_once 'model.php';
 
 $summa = array();
 $notice = array();
-$discount_price = array();
+$discount_price = 0;
 function parse_func($product, $param){
     static $discount_price;
     global $summa;
     global $notice;
-    $price_plus = $param['цена'] * $param['количество заказано'];
+
+
+    if($param['осталось на складе'] < $param['количество заказано']){
+        $price_plus = $param['цена'] * $param['осталось на складе'];
+        $notice[] = 'Товар: ' .$product. ' нехватка на складе = ' .($param['количество заказано'] - $param['осталось на складе']). 'шт';
+    }
+    else{
+        $price_plus = $param['цена'] * $param['количество заказано'];
+    }
+
+    if($product=='игрушка детская велосипед' && $param['количество заказано'] >=3 && $param['осталось на складе'] >=3 ){
+            $param['diskont'] = '30%';
+            $discount_price=$price_plus * 0.7;
+            $notice[] = 'На товар:'.$product. ' предоставляется скидка '.$param['diskont'];
+    }
+
+
 
     switch ($param['diskont']) {
         case 'diskont0':
             $param['diskont'] = '0%';
-            $discount_price+=$price_plus * 1;
-            $notice[] = 'На товар:'.$product. ' скидка не предоставляется';
+            $discount_price=$price_plus * 1;
+            $notice[] = 'На товар:'.$product. ' <b>скидка НЕ ПРЕДОСТАВЛЯЕТСЯ</b>';
             break;
 
         case 'diskont1':
             $param['diskont'] = '10%';
-            $discount_price+=$price_plus * 0.9;
+            $discount_price=$price_plus * 0.9;
             $notice[] = 'На товар:'.$product. ' предоставляется скидка '.$param['diskont'];
             break;
 
         case 'diskont2':
             $param['diskont'] = '20%';
-            $discount_price+=$price_plus * 0.8;
+            $discount_price=$price_plus * 0.8;
             $notice[] = 'На товар:'.$product. ' предоставляется скидка '.$param['diskont'];
             break;
 
         default:
             break;
-    }
-
-    if($param['осталось на складе'] >= $param['количество заказано']){
-        $price_plus = $param['цена'] * $param['количество заказано'];
-    }
-    else{
-        $price_plus = $param['цена'] * $param['осталось на складе'];
-        $notice[] = 'Товар: ' .$product. ' нехватка на складе = ' .($param['количество заказано'] - $param['осталось на складе']). 'шт';
-    }
-
-    if($product=='игрушка детская велосипед' && $param['количество заказано'] >=3 && $param['осталось на складе'] >=3 ){
-            $param['diskont'] = '30%';
-            $discount_price+=$price_plus * 0.7;
-            $notice[] = 'На товар:'.$product. ' предоставляется скидка '.$param['diskont'];
     }
 
 
