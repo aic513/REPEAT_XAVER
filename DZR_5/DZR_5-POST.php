@@ -12,6 +12,8 @@ $news='Четыре новосибирские компании вошли в с
 Звезды телешоу «Голос» Наргиз Закирова и Гела Гуралиа споют в «Маяковском»';
 $news=  explode("\n", $news);
 
+$news = array_combine(array_merge(array_slice(array_keys($news), 1), array(count($news))), array_values($news));
+
 function all_news($news){
     foreach ($news as $key => $value) {
         echo $key .' - ';
@@ -19,26 +21,32 @@ function all_news($news){
     }
 }
 
+function one_new($id, $news) {
+    if (isset($_POST['id'])) {
+        $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+        if (($id > count($news)) || ($id <= 0) || (is_numeric($id) == FALSE)) {
+            echo "New with id = " . $_POST['id'] . " doesn't exist";
+            echo '<h1>ERROR 404 Not Found</h1>';
+            echo '<br>';
+            echo "<a href='DZR_5-POST.php'>Назад</a>";
+        } else {
+            echo $news[$id];
+            echo '<br>';
+            echo "<a href='DZR_5-POST.php'>Назад</a>";
+        }
+    } else {
+        all_news($news);
+    }
+}
 
-if(isset($_POST['id'])){
-     $id = (int)$_POST['id'];
-     echo $news[$id];
-}
-else{
-    all_news($news);
-}
-
-if ($_POST['id']>count($news)) {
-    header('HTTP/1.0 404 NOT FOUND');
-    echo '<h1>ERROR 404 Not Found</h1><br/>';
-}
+one_new($id, $news);
 
 ?>
 
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Тег FORM</title>
+        <title>POST</title>
     </head>
     <body>
         <form method="POST">
@@ -47,6 +55,3 @@ if ($_POST['id']>count($news)) {
         </form>
     </body>
 </html>
-
-
-

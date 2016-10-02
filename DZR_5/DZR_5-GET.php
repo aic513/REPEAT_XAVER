@@ -10,28 +10,33 @@ $news='Четыре новосибирские компании вошли в с
 День святого Патрика: угощения, пивной теннис и уличные гуляния с огнем
 «Красный факел» пустит публику на ночные экскурсии за кулисы и по закоулкам столетнего здания
 Звезды телешоу «Голос» Наргиз Закирова и Гела Гуралиа споют в «Маяковском»';
+
 $news=  explode("\n", $news);
 
-function all_news($news){
+$news = array_combine(array_merge(array_slice(array_keys($news), 1), array(count($news))), array_values($news));//keys are shifted to 1 element left
+
+function all_news($news) {
     foreach ($news as $key => $value) {
-        echo $key .' - ';
-        echo $value .'<br>';
+        echo $key . ' - ';
+        echo $value . '<br>';
     }
 }
 
-
-if(isset($_GET['id'])){
-     $id = (int)$_GET['id'];
-     echo $news[$id];
+function one_new($id, $news) {
+    if (isset($_GET['id'])) {
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        if (($id > count($news)) || ($id <= 0) || (is_numeric($id) == FALSE)) {
+            echo "New with id = " . $_GET['id'] . " doesn't exist<br>";
+            echo '<h1>ERROR 404 Not Found</h1><br/>';
+        } else {
+            echo $news[$id];
+        }
+    } else {
+        all_news($news);
+    }
 }
-else{
-    all_news($news);
-}
 
+one_new($id, $news);
 
-if ($_GET['id']>count($news)) {
-    header('HTTP/1.0 404 NOT FOUND');
-    echo '<h1>ERROR 404 Not Found</h1><br/>';
-}
 
 
