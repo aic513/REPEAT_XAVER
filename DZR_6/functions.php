@@ -1,7 +1,6 @@
 <?php
 header('Content-type: text/html; charset=utf-8');
 
-
 function return_form($new_ads = 0) {
     if (isset($new_ads['id'])) {
         $save_ads = 'Сохранить';
@@ -12,8 +11,7 @@ function return_form($new_ads = 0) {
     require_once ("form.php");
 }
 
-function show_city_block($city_selected = '') {  //секция с городами
-
+function show_city_block($city_selected = '') {
     $cities = array(
         '641780' => 'Новосибирск',
         '641490' => 'Барабинск',
@@ -32,7 +30,7 @@ function show_city_block($city_selected = '') {  //секция с города�
     }
 }
 
-function show_category_block($category_selected = '') {  //секция с категориями
+function show_category_block($category_selected = '') {
     $categories = '
 [Транспорт]
 9 = Автомобили с пробегом;
@@ -98,50 +96,43 @@ function show_category_block($category_selected = '') {  //секция с ка�
 116 = Готовый бизнес;
 40 = Оборудование для бизнеса;';
 
-$categories = parse_ini_string($categories, true);
+    $categories = parse_ini_string($categories, true);
 
-        foreach($categories as $sphere=>$subcategories){
-            echo '<optgroup label="' . $sphere . '">';
-            foreach ($subcategories as $value => $category) {
-                $selected = ($value==$category_selected) ? 'selected=""' : '';
-                echo '<option data-coords=",," '.$selected.' value="'.$value.'">'.$category.'</option>';
-            }
+    foreach ($categories as $sphere => $subcategories) {
+        echo '<optgroup label="' . $sphere . '">';
+        foreach ($subcategories as $value => $category) {
+            $selected = ($value == $category_selected) ? 'selected=""' : '';
+            echo '<option data-coords=",," ' . $selected . ' value="' . $value . '">' . $category . '</option>';
         }
+    }
 }
 
-function restart(){
+function restart() {
     header("Location: $_SERVER[SCRIPT_NAME]");
     exit;
 }
 
-function show_ads(){
-    if(!empty($_SESSION['ads'])){
+function show_ads() {
+    if (!empty($_SESSION['ads'])) {
         foreach ($_SESSION['ads'] as $key => $value) {
-            echo '<h4 align="left">Объявление №'.($key+1).', введенное пользователем - '.$value['name'].'</h4></n>';
+            echo '<h4 align="left">Объявление №' . ($key + 1) . ', введенное пользователем - ' . $value['name'] . '</h4></n>';
             echo "<div align='left'>"
-            . "<a href='$_SERVER[SCRIPT_NAME]?show_id=$key'>".($key+1).") {$value['title']}</a> "
+            . "<a href='$_SERVER[SCRIPT_NAME]?show_id=$key'>" . ($key + 1) . ") {$value['title']}</a> "
             . "| Цена: {$value['price']} руб. "
             . "| Продавец: {$value['name']} "
             . "| Email: {$value['email']} "
             . "| Телефон: {$value['phone']} "
             . "| <a href='$_SERVER[SCRIPT_NAME]?delete_ads=$key'>Удалить</a></div><br>";
         }
-    }
-    else{
+    } else {
         echo '<h3 style="color:green;">Объявлений не добавлено</h5>';
     }
 }
 
-function delete_ads($ads){
+function delete_ads($ads) {
     unset($_SESSION['ads'][$ads]);
 }
 
-function delete_session(){
+function delete_session() {
     unset($_SESSION['ads']);
 }
-
-
-
-
-
-
