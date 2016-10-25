@@ -10,8 +10,8 @@ if (isset($_COOKIE['cookie_repository']) && $_COOKIE['cookie_repository']!='NULL
 }
 
 if (isset($_POST['confirm'])) {
-    if (is_numeric($_POST['id_ads'])) {
-        $ads_cookie[$_POST['id_ads']] = $_POST;
+    if (is_numeric($_GET['show_id']) && isset($_GET['show_id'])) {
+        $ads_cookie[$_GET['show_id']] = $_POST;
     } else {
         $ads_cookie[] = $_POST;
     }

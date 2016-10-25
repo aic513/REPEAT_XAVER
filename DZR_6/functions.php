@@ -133,6 +133,6 @@ function delete_ads($ads) {
     unset($_SESSION['ads'][$ads]);
 }
 
-function delete_session() {
+function delete_base_ads() {
     unset($_SESSION['ads']);
 }

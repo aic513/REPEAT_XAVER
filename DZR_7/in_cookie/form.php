@@ -62,6 +62,5 @@ header('Content-type: text/html; charset=utf-8');
             <input type="submit" <?php echo $back;?> value="Назад" name="back">
             <input type="submit" value="Очистить базу объявлений" name="clear_base">
         </div>
-        <input type=hidden name=id_ads value="<?php echo $new_ads['id'];?>">
-</form>
+    </form>
 

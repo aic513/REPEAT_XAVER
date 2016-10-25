@@ -1,7 +1,7 @@
 <?php
 header('Content-type: text/html; charset=utf-8');
 ?>
-<title>!!!!!КАПЕЦ!!!!!!</title>
+<title>!!!!!КАПЕЦ SESSION!!!!!!</title>
 <h1 align="center"><strong>Доска объявлений</strong></h1>
 <form style="margin-left:20%;" method="post">
     <font size="4">
@@ -64,6 +64,5 @@ header('Content-type: text/html; charset=utf-8');
             <input type="submit" <?php echo $back;?> value="Назад" name="back">
             <input type="submit" value="Очистить базу объявлений" name="clear_session">
         </div>
-        <input type=hidden name=id_ads value="<?php echo $new_ads['id'];?>">
-</form>
+    </form>
 

@@ -1,17 +1,18 @@
 <?php
 header('Content-type: text/html; charset=utf-8');
+error_reporting(E_ERROR|E_PARSE);
 require_once ("functions.php");
 session_start();
 
 if (isset($_POST['confirm'])) {
-    if (is_numeric($_POST['id_ads'])) {
-        $_SESSION['ads'][$_POST['id_ads']] = $_POST;
+    if (is_numeric($_GET['show_id']) && isset($_GET['show_id'])) {
+        $_SESSION['ads'][$_GET['show_id']] = $_POST;
     } else {
         $_SESSION['ads'][] = $_POST;
     }
     restart();
 } elseif ($_POST['clear_session']) {
-    delete_session();
+    delete_base_ads();
     restart();
 } elseif (isset($_POST['clear_form']) || isset($_POST['back'])) {
     restart();
@@ -27,3 +28,4 @@ if (isset($_POST['confirm'])) {
     return_form();
     show_ads();
 }
+

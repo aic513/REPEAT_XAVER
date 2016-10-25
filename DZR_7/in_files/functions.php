@@ -1,6 +1,12 @@
 <?php
 header('Content-type: text/html; charset=utf-8');
 function return_form($new_ads = 0) {
+    if (isset($new_ads['id'])) {
+        $save_ads = 'Сохранить';
+    } else {
+        $save_ads = 'Добавить';
+        $back = 'hidden=""';
+    }
     require_once ("form.php");
 }
 

@@ -53,14 +53,13 @@
             <label for="price_field">Цена</label>
             <input type="text" id="price_field" maxlength="9" value="<?php echo $new_ads['price'];?>" name="price">&nbsp;<span>руб.</span>
         </div>
-    <input type="submit" value="<?php echo isset($_GET['show_id']) ? 'Сохранить ': 'Добавить '; ?> объявление" id="form_submit" name="confirm">
+    <input type="submit" value="<?php echo $save_ads ?> объявление" id="form_submit" name="confirm">
         <input type="submit" value="Очистить форму" name="clear_form">
         <div class="buttons">
-            <input type="submit"  value="Назад" name="back">
+            <input type="submit" <?php echo $back;?> value="Назад" name="back">
             <input type="submit" value="Очистить базу объявлений" name="clear_base">
             <input type="file" name="filename">
             <input type="submit" value="загрузить файл" name="download_file">
         </div>
-        <input type=hidden name=id_ads value="<?php echo isset($_GET['show_id']) ? $_GET['show_id']:'' ?>">
 </form>
 
