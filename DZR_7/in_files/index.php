@@ -1,9 +1,9 @@
 <?php
-
 header('Content-type: text/html; charset=utf-8');
 error_reporting(E_ERROR | E_PARSE);
 require_once('data.php');
 require_once('functions.php');
+require_once('functions_download.php');
 
 if (file_exists('file.txt')) {
     $ads_files = unserialize(file_get_contents('file.txt'));
@@ -35,23 +35,22 @@ if (isset($_POST['confirm'])) {
     $show_id = (int) ($_GET['show_id']);
     $ads_files[$show_id]['id'] = $show_id;
     return_form($ads_files[$show_id]);
+} elseif (isset($_POST['clear_photos'])) {
+    clear_dirs(array("img_big/", "img_small/"));
+    restart();
+} elseif (isset($_POST['download_file'])) {
+    if (isset($_FILES['fupload'])) {
+        upload_image($_FILES['fupload']);
+        restart();
+    }
 } else {
     return_form();
     show_ads($ads_files);
+    show_gallery();
 }
 
-if (isset($_POST['download_file'])) {
-    if ($_FILES) {
-        $blacklist = array(".php", ".phtml", ".php3", ".php4", ".html", ".htm", "txt");
-        foreach ($blacklist as $item) {
-            if (preg_match("/$item\$/i", $_FILES['filename']['name']))
-                exit;
-        }
-        $name = "images/" . $_FILES['filename']['name'];
-        move_uploaded_file($_FILES['filename']['tmp_name'], $name);
-        echo '<a target="_blank" href =' . "$name" . '>Загружаемое изображение - ' . $name . '</a><br>';
-    }
-}
+
+
 
 
 

@@ -1,4 +1,4 @@
-<title>!!!!!КАПЕЦ FILES!!!!!!</title>
+<title>!!!!!КАПЕЦ SMARTY!!!!!!</title>
 <h1 align="center"><strong>Доска объявлений</strong></h1>
 <form style="margin-left:20%;" method="post" enctype="multipart/form-data">
     <font size="4">
@@ -55,11 +55,12 @@
         </div>
     <input type="submit" value="<?php echo $save_ads ?> объявление" id="form_submit" name="confirm">
         <input type="submit" value="Очистить форму" name="clear_form">
+        <input type="submit" value="Удалить все фотографии" name="clear_photos">
         <div class="buttons">
             <input type="submit" <?php echo $back;?> value="Назад" name="back">
             <input type="submit" value="Очистить базу объявлений" name="clear_base">
-            <input type="file" name="filename">
-            <input type="submit" value="загрузить файл" name="download_file">
+            <input type="file" name="fupload">
+            <input type="submit" value="Загрузить файл!" name="download_file">
         </div>
 </form>
 
