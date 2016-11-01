@@ -2,13 +2,10 @@
 
 header('Content-type: text/html; charset=utf-8');
 
-function return_form($new_ads = 0) {
-    if (isset($new_ads['id'])) {
-        $save_ads = 'Сохранить';
-    } else {
-        $save_ads = 'Добавить';
-    }
-    require_once ("form.php");
+function return_form($smarty,$ads_files,$new_ads = 0) {
+    $smarty->assign('new_ads',$new_ads);
+    $smarty->assign('ads_files',$ads_files);
+    $smarty->display('form.tpl');
 }
 
 function delete_ads($id) {

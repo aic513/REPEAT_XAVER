@@ -1,5 +1,4 @@
 <?php
-function show_city_block($city_selected = '') {
     $cities = array(
         '641780' => 'Новосибирск',
         '641490' => 'Барабинск',
@@ -12,13 +11,7 @@ function show_city_block($city_selected = '') {
         '641790' => 'Обь'
     );
 
-    foreach ($cities as $value => $city) {
-        $selected = ($value == $city_selected) ? 'selected=""' : '';
-        echo '<option data-coords=",," ' . $selected . ' value="' . $value . '">' . $city . '</option>';
-    }
-}
 
-function show_category_block($category_selected = '') {
     $categories = '
 [Транспорт]
 9 = Автомобили с пробегом;
@@ -84,13 +77,6 @@ function show_category_block($category_selected = '') {
 116 = Готовый бизнес;
 40 = Оборудование для бизнеса;';
 
-    $categories = parse_ini_string($categories, true);
+$categories = parse_ini_string($categories, true);
 
-    foreach ($categories as $sphere => $subcategories) {
-        echo '<optgroup label="' . $sphere . '">';
-        foreach ($subcategories as $value => $category) {
-            $selected = ($value == $category_selected) ? 'selected=""' : '';
-            echo '<option data-coords=",," ' . $selected . ' value="' . $value . '">' . $category . '</option>';
-        }
-    }
-}
+    

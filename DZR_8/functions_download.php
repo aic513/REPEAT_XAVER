@@ -44,51 +44,53 @@ function check_upload($file) {
 }
 
 function img_resize($src, $dest, $width, $height, $rgb = 0xFFFFFF, $quality = 100) {
-  if (!file_exists($src)) return false;
+    if (!file_exists($src))
+        return false;
 
-  $size = getimagesize($src);
+    $size = getimagesize($src);
 
-  if ($size === false) return false;
+    if ($size === false)
+        return false;
 
-  $format = strtolower(substr($size['mime'], strpos($size['mime'], '/')+1));
-  $icfunc = "imagecreatefrom" . $format;
-  if (!function_exists($icfunc)) return false;
+    $format = strtolower(substr($size['mime'], strpos($size['mime'], '/') + 1));
+    $icfunc = "imagecreatefrom" . $format;
+    if (!function_exists($icfunc))
+        return false;
 
-  $x_ratio = $width / $size[0];
-  $y_ratio = $height / $size[1];
+    $x_ratio = $width / $size[0];
+    $y_ratio = $height / $size[1];
 
-  $ratio       = min($x_ratio, $y_ratio);
-  $use_x_ratio = ($x_ratio == $ratio);
+    $ratio = min($x_ratio, $y_ratio);
+    $use_x_ratio = ($x_ratio == $ratio);
 
-  $new_width   = $use_x_ratio  ? $width  : floor($size[0] * $ratio);
-  $new_height  = !$use_x_ratio ? $height : floor($size[1] * $ratio);
-  $new_left    = $use_x_ratio  ? 0 : floor(($width - $new_width) / 2);
-  $new_top     = !$use_x_ratio ? 0 : floor(($height - $new_height) / 2);
+    $new_width = $use_x_ratio ? $width : floor($size[0] * $ratio);
+    $new_height = !$use_x_ratio ? $height : floor($size[1] * $ratio);
+    $new_left = $use_x_ratio ? 0 : floor(($width - $new_width) / 2);
+    $new_top = !$use_x_ratio ? 0 : floor(($height - $new_height) / 2);
 
-  $isrc = $icfunc($src);
-  $idest = imagecreatetruecolor($width, $height);
+    $isrc = $icfunc($src);
+    $idest = imagecreatetruecolor($width, $height);
 
-  imagefill($idest, 0, 0, $rgb);
-  imagecopyresampled($idest, $isrc, $new_left, $new_top, 0, 0,
-    $new_width, $new_height, $size[0], $size[1]);
+    imagefill($idest, 0, 0, $rgb);
+    imagecopyresampled($idest, $isrc, $new_left, $new_top, 0, 0, $new_width, $new_height, $size[0], $size[1]);
 
-  imagejpeg($idest, $dest, $quality);
+    imagejpeg($idest, $dest, $quality);
 
-  imagedestroy($isrc);
-  imagedestroy($idest);
+    imagedestroy($isrc);
+    imagedestroy($idest);
 
-  return true;
+    return true;
 }
 
-function show_gallery(){
+function show_gallery() {
     $images = get_gallery();
-if (!empty($images)) {
-    foreach ($images as $key => $image) {
-        echo '<a target="_blank" href="img_big/' . $image . '"><img style="display:inline-block" class="img-responsive" src="img_small/' . $image . '" alt="picture"></a>';
+    if (!empty($images)) {
+        foreach ($images as $key => $image) {
+            echo '<a target="_blank" href="img_big/' . $image . '"><img style="display:inline-block" class="img-responsive" src="img_small/' . $image . '" alt="picture"></a>';
+        }
+    } else {
+        echo '<h3 style="color:purple;">Загруженных изображений не найдено</h5>';
     }
-} else {
-    echo '<h3 style="color:purple;">Загруженных изображений не найдено</h5>';
-}
 }
 
 function clear_dirs($directories) {
@@ -101,4 +103,3 @@ function clear_dirs($directories) {
         }
     }
 }
-
