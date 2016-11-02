@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.30, created on 2016-11-01 15:06:20
+<?php /* Smarty version 2.6.30, created on 2016-11-01 22:35:43
          compiled from header.tpl */ ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>!!!!!КАПЕЦ SMARTY!!!!!!</title>
+        <title>!!!!!КАПЕЦ!!!!!!</title>
 
         <!-- Bootstrap -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">

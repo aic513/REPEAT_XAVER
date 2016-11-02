@@ -36,10 +36,10 @@ if (isset($_POST['confirm'])) {
     }
     save_ads_in_files($ads_files);
     restart();
-} elseif (isset($_POST['clear_form']) || isset($_POST['back'])) {
+} elseif (isset($_POST['clear_form'])) {
     restart();
-} elseif ($_POST['clear_base']) {
-    delete_base_ads('');
+}if (isset($_POST['clear_base'])) {
+    delete_base_ads();
     restart();
 } elseif (isset($_GET['delete_ads'])) {
     delete_ads((int) ($_GET['delete_ads']));
@@ -63,6 +63,8 @@ if (isset($_POST['confirm'])) {
     show_ads($ads_files);
     show_gallery();
 }
+
+
 
 
 
