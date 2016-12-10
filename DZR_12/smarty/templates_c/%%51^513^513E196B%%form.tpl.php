@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.30, created on 2016-12-10 12:35:22
+<?php /* Smarty version 2.6.30, created on 2016-12-10 14:01:13
          compiled from form.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'html_options', 'form.tpl', 46, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'html_options', 'form.tpl', 48, false),)), $this); ?>
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-10 col-md-offset-1 col-sm-offset-2">
@@ -15,6 +15,8 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_option
                                value="<?php echo $this->_tpl_vars['new_ads']->get_name(); ?>
 "
                                name="name">
+                             <?php if ($this->_tpl_vars['error_name']): ?><font color="red"><?php echo $this->_tpl_vars['error']; ?>
+</font><?php endif; ?>
                     </div>
                 </div>
                 <div class="email form-group col-md-12">
@@ -45,6 +47,8 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_option
                                value="<?php echo $this->_tpl_vars['new_ads']->get_phone(); ?>
 "
                                name="phone">
+                        <?php if ($this->_tpl_vars['error_phone']): ?><font color="red"><?php echo $this->_tpl_vars['error']; ?>
+</font><?php endif; ?>
                     </div>
                 </div>
                 <div class="city form-group col-md-12">
@@ -69,6 +73,8 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_option
                         value="<?php echo $this->_tpl_vars['new_ads']->get_title(); ?>
 " 
                         name="title">
+                        <?php if ($this->_tpl_vars['error_title']): ?><font color="red"><?php echo $this->_tpl_vars['error']; ?>
+</font><?php endif; ?>
                     </div>
                 </div>
                 <div class="description form-group col-md-12">
@@ -78,6 +84,8 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_option
                         cols="100" placeholder="Введите информацию о товаре/услуге" rows="5"
                         maxlength="3000"><?php echo $this->_tpl_vars['new_ads']->get_description(); ?>
 </textarea>
+                        <?php if ($this->_tpl_vars['error_description']): ?><font color="red"><?php echo $this->_tpl_vars['error']; ?>
+</font><?php endif; ?>
                     </div>
                 </div>
                 <div class="price form-group col-md-12">
@@ -87,6 +95,8 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_option
                                value="<?php echo $this->_tpl_vars['new_ads']->get_price(); ?>
 " 
                                name="price">
+                        <?php if ($this->_tpl_vars['error_price']): ?><font color="red"><?php echo $this->_tpl_vars['error']; ?>
+</font><?php endif; ?>
                     </div>
                 </div>
                 <div class="personal form-group col-md-12">

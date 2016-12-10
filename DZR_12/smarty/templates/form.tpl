@@ -10,6 +10,7 @@
                         <input placeholder="Введите Ваше имя" type="text" class="form-control" id="field_name" maxlength="40"
                                value="{$new_ads->get_name()}"
                                name="name">
+                             {if $error_name}<font color="red">{$error}</font>{/if}
                     </div>
                 </div>
                 <div class="email form-group col-md-12">
@@ -38,6 +39,7 @@
                         <input class="form-control" placeholder="Введите номер телефона" id="field_phone" type="phone" 
                                value="{$new_ads->get_phone()}"
                                name="phone">
+                        {if $error_phone}<font color="red">{$error}</font>{/if}
                     </div>
                 </div>
                 <div class="city form-group col-md-12">
@@ -61,6 +63,7 @@
                         maxlength="50" 
                         value="{$new_ads->get_title()}" 
                         name="title">
+                        {if $error_title}<font color="red">{$error}</font>{/if}
                     </div>
                 </div>
                 <div class="description form-group col-md-12">
@@ -69,6 +72,7 @@
                         <textarea class="form-control" id="description_field" name="description"
                         cols="100" placeholder="Введите информацию о товаре/услуге" rows="5"
                         maxlength="3000">{$new_ads->get_description()}</textarea>
+                        {if $error_description}<font color="red">{$error}</font>{/if}
                     </div>
                 </div>
                 <div class="price form-group col-md-12">
@@ -77,6 +81,7 @@
                         <input class="form-control" type="text" id="price_field" placeholder="Введите цену в рублях" maxlength="9"
                                value="{$new_ads->get_price()}" 
                                name="price">
+                        {if $error_price}<font color="red">{$error}</font>{/if}
                     </div>
                 </div>
                 <div class="personal form-group col-md-12">

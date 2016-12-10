@@ -46,6 +46,7 @@ class ads_store {
     public function del_ads($id) {
         $this->ads[$id]->delete();
         unset($this->ads[$id]);
+        return self::$instance;
     }
 
     public function prepare_for_out() {

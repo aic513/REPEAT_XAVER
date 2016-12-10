@@ -17,6 +17,7 @@ spl_autoload_register(function ($class) {
 $ads_store = ads_store::instance();
 $ads_store->get_all_ads_from_db();
 $pic = new photo();
+$errors = new errors(array('name','phone','title','description','price'));
 $smarty->assign('cities', $ads_store->get_location());
 $smarty->assign('categories', $ads_store->get_category());
 
@@ -42,13 +43,15 @@ if (isset($_GET['show_id'])) {
 
 if (isset($_POST['confirm'])) {
     $new_ads = new ads($_POST);
-    $ads_store->save_post($_POST);
-    $ads_store->restart();
+    if ($errors->show_error($new_ads, $smarty)) {
+        $smarty->assign('new_ads', $new_ads);
+    } else {
+        $ads_store->save_post($_POST)->restart();
+    }
 }
 
 if (isset($_GET['delete_ads'])) {
-    $ads_store->del_ads((int) $_GET['delete_ads']);
-    $ads_store->restart();
+    $ads_store->del_ads((int) $_GET['delete_ads'])->restart();
 }
 
 if (isset($_POST['clear_form'])) {
