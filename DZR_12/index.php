@@ -65,7 +65,7 @@ if (isset($_POST['clear_base'])) {
 if (isset($_POST['download_file'])) {
     if (isset($_FILES['fupload'])) {
         $pic->upload_image($_FILES['fupload']);
-        $ads_store->restart();
+        //$ads_store->restart();
     }
 } elseif (isset($_POST['clear_photos'])) {
     $pic->delete_all_img();

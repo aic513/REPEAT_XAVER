@@ -81,7 +81,7 @@ class photo {
     }
 
     public function show_gallery() {
-        $images = $this->get_last_img();
+        $images = $this->get_img();
         if (!empty($images)) {
             foreach ($images as $value) {
                 echo '<a target="_blank" href="photo.php?id=' . $value['id_image'] .

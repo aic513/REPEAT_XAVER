@@ -9,16 +9,16 @@ $(document).ready(function () {
         $('#container').load('ajax.php?action=delete&delete_ads=' + id,
                 function () {
                     tr.fadeOut("slow",
-                    function () {
-                        $(this).remove();
-                        clear_form();
-                    });
+                            function () {
+                                $(this).remove();
+                                clear_form();
+                            });
                 });
     });
 });
 
 clear_form = function () {
     $(':input', '#form').removeAttr('checked').removeAttr('selected')
-    .not(':button, :submit, :reset, #addEdit, :checkbox, :radio').val('');
-};  
+            .not(':button, :submit, :reset, #addEdit, :checkbox, :radio').val('');
+};
 

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.30, created on 2016-12-10 11:26:57
+<?php /* Smarty version 2.6.30, created on 2016-12-23 17:38:07
          compiled from show_ads.tpl */ ?>
 <br>
 <table style="font-family:Consolas;font-style:italic; font-size: 16px;" class="table table-bordered table-responsive">
